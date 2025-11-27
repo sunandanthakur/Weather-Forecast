@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apple Weather-inspired Design System */
+
+@layer base {
+  :root {
+    /* Dynamic sky gradients - will be applied via classes */
+    --sky-day-start: 210 100% 70%;
+    --sky-day-end: 200 90% 50%;
+    --sky-sunset-start: 25 100% 60%;
+    --sky-sunset-mid: 280 60% 50%;
+    --sky-sunset-end: 240 60% 30%;
+    --sky-night-start: 240 50% 15%;
+    --sky-night-end: 250 60% 8%;
+    --sky-cloudy-start: 210 20% 60%;
+    --sky-cloudy-end: 210 15% 40%;
+    --sky-rainy-start: 210 30% 35%;
+    --sky-rainy-end: 220 40% 20%;
+
+    /* Glassmorphism */
+    --glass-bg: 0 0% 100% / 0.15;
+    --glass-bg-strong: 0 0% 100% / 0.25;
+    --glass-border: 0 0% 100% / 0.2;
+    --glass-highlight: 0 0% 100% / 0.4;
+
+    /* Core colors */
+    --background: 220 60% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 100% / 0.12;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 50% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 100% / 0.1;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 100% / 0.05;
+    --muted-foreground: 0 0% 100% / 0.6;
+
+    --accent: 35 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 210 100% 60%;
+
+    --radius: 1.25rem;
+
+    /* Shadows */
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 40px rgba(100, 180, 255, 0.15);
+  }
+
+  .dark {
+    --background: 220 60% 8%;
+    --foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply rounded-3xl border border-border;
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-card-strong {
+    @apply rounded-3xl border border-border;
+    background: hsla(var(--glass-bg-strong));
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* Sky Gradients */
+  .sky-gradient-day {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--sky-day-start)) 0%,
+      hsl(var(--sky-day-end)) 100%
+    );
+  }
+
+  .sky-gradient-sunset {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--sky-sunset-start)) 0%,
+      hsl(var(--sky-sunset-mid)) 50%,
+      hsl(var(--sky-sunset-end)) 100%
+    );
+  }
+
+  .sky-gradient-night {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--sky-night-start)) 0%,
+      hsl(var(--sky-night-end)) 100%
+    );
+  }
+
+  .sky-gradient-cloudy {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--sky-cloudy-start)) 0%,
+      hsl(var(--sky-cloudy-end)) 100%
+    );
+  }
+
+  .sky-gradient-rainy {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--sky-rainy-start)) 0%,
+      hsl(var(--sky-rainy-end)) 100%
+    );
+  }
+
+  /* Temperature Display */
+  .temp-display {
+    @apply font-extralight tracking-tighter;
+    font-size: clamp(5rem, 20vw, 8rem);
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Horizontal Scroll */
+  .horizontal-scroll {
+    @apply flex gap-3 overflow-x-auto pb-2;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Weather Icon Glow */
+  .weather-icon-glow {
+    filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.4));
+  }
+
+  /* Subtle text shadow for readability */
+  .text-shadow {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@layer utilities {
+  /* Animation delays for staggered reveals */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+}
